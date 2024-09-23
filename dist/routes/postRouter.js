@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const postHelpers_1 = require("../helpers/postHelpers");
+const payloadValidator_1 = require("../middleware/payloadValidator");
+const postRouter = (0, express_1.Router)();
+postRouter.post("/", payloadValidator_1.validatePost, postHelpers_1.createPost);
+postRouter.get("/", postHelpers_1.getPosts);
+postRouter.get("/:id", postHelpers_1.getPostById);
+postRouter.put("/:id", payloadValidator_1.validatePost, postHelpers_1.updatePost);
+postRouter.delete("/:id", postHelpers_1.deletePost);
+exports.default = postRouter;
